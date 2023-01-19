@@ -1,7 +1,8 @@
 from django.shortcuts import render
-
 from django.http import HttpResponse
+from django.template import loader
 
-def welcome(request):
 
-    return HttpResponse("<h1> 장고 공부를 재미있게 합시다 !!</h1>")
+def map(request):
+    template = loader.get_template('map.html')
+    return HttpResponse(template.render(None, request))
