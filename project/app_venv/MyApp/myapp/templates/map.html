@@ -1,26 +1,63 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <style>
+  	body{
+		height: 460px;
+		align-items: center;
+		justify-content: center;
+		background-color: #FFF6BD;
+ 	}
+ 	.box{
+		color: black;
+		height: 50px;
+		text-align : center;
+	}
+	.timerBox{
+		width: 200px;
+		color: black;
+		outline: 2px solid black;
+	}
+	.timerBox .time{
+		font-size: 30pt;
+		color: #4C4C4C;
+		text-align: center;
+	}
+	.btnBox{
+		margin: 20px auto;
+		color : #86C8BC;
+		text-align: center;
+	}
+	.btnBox .fa{
+		margin: 0px 5px;
+		font-size: 30pt;
+		color: #86C8BC;
+		cursor: pointer;
+	}
+	</style>
     <meta charset="UTF-8">
     <title>map</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- <script>type="text/javascript" src="index.js"</> -->
 </head>
 <body>
-<header>
-    <table width="100%" bgcolor="#FFF6BD">
-        <tr>
-            <td width="50%">
-                <div class="time">00:00:00</div>
-            </td>
-            <td width="50%">
-                <div class="km">00km</div>
-            </td>
-        </tr>
-    </table>
-</header>
 <section>
+    <article width="100%">
+        <table id="box" class = "box" width="100%">
+            <tr id="timerbox" class="timerbox">
+                <td width="50%">
+                    <div id="time" class="time"><span id="hour">00</span>:<span id="min">00</span>:<span id="sec">00</span>.<span id="micro">00</span></div>
+                </td>
+                <td width="50%">
+                    <div>00km</div>
+                </td>
+            </tr>
+        </table>
+    </article>
     <article>
         <!-- 지도를 표시할 div 입니다 -->
-        <div id="map" style="width:100%;height:340px;"></div>
+        <div id="map" style="width:100%;height:600px;"></div>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6075751d111977dfe10aaa2dec967efd"></script>
         <script>
             var mapContainer = document.getElementById('map'), // 지도를 표시할 div
@@ -33,11 +70,131 @@
         </script>
     </article>
     <article>
-        <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary"></button>
-            <button type="button" class="btn btn-secondary"></button>
+        <div>
+            <div class="btnBox">
+                <div id="started">
+                    <button type="button" id="pause" aria-hidden="true">일시정지</button>
+                    <button type="button" id="stop" aria-hidden="true">그만하기</button>
+                </div>
+                <div id="paused">
+                    <button type="button" id="start" aria-hidden="true">시작하기</button>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        $('#paused').show(); //페이지를 로드할 때 표시할 요소
+                        $('#started').hide(); //페이지를 로드할 때 숨길 요소
+                            $('#start').click(function(){
+                                $ ('#paused').hide(); //클릭 시 첫 번째 요소 숨김
+                                $ ('#started').show(); //클릭 시 두 번째 요소 표시
+                            return false;
+                        });
+                    });
+                </script>
+            </div>
+            <script>
+                window.onload = function(){
+
+                    let timer_sec;
+                    let timer_min;
+                    let timer_hour;
+                    let timer_micro;
+
+                    let timer = 0;
+
+                    //click start button
+                    document.getElementById("start").addEventListener("click", function(){
+                        //console.log(timer);
+                        if(timer > 0){
+                            return;
+                        }
+
+                        var micro = parseInt(document.getElementById("micro").innerText);
+                        var sec = parseInt(document.getElementById("sec").innerText);
+                        var min = parseInt(document.getElementById("min").innerText);
+                        var hour = parseInt(document.getElementById("hour").innerText);
+
+                        //start seconds
+                        timer_micro = setInterval(function(){
+                            micro++;
+                            if(micro == 100) {
+                                micro = "00";
+                            } else if(micro < 10){
+                                micro = "0" + micro;
+                            }
+                            document.getElementById("micro").innerText = micro;
+                        }, 10);
+
+                        //start seconds
+                        timer_sec = setInterval(function(){
+                            //console.log(i);
+                            sec++;
+                            if(sec == 60) {
+                                sec = "00";
+                            } else if(sec < 10){
+                                sec = "0" + sec;
+                            }
+                            document.getElementById("sec").innerText = sec;
+                        }, 1000);
+
+                        //start minutes
+                        timer_min = setInterval(function(){
+                            min++;
+
+                            if(min == 60) {
+                                min = 0;
+                            } else if(min < 10){
+                                min = "0" + min;
+                            }
+
+                            document.getElementById("min").innerText = min;
+                        }, 60000);
+
+                        //start hours
+                        timer_hour = setInterval(function(){
+                            //console.log(hour);
+                            hour++;
+
+                            if(hour < 10){
+                                hour = "0" + hour;
+                            }
+
+                            document.getElementById("hour").innerText = hour;
+
+                        }, 3600000);
+
+                        timer++;
+                        //console.log(timer);
+                    });
+
+                    //click pause button
+                    document.getElementById("pause").addEventListener("click", function(){
+                        stop();
+                    });
+
+                    function stop(){
+                        clearInterval(timer_micro);
+                        clearInterval(timer_sec);
+                        clearInterval(timer_min);
+                        clearInterval(timer_hour);
+
+                        timer--;
+                        if(timer < 0)
+                            timer = 0;
+                    }
+
+                    //click stop button
+                    document.getElementById("stop").addEventListener("click", function(){
+                        stop();
+                        document.getElementById("micro").innerText = "00";
+                        document.getElementById("sec").innerText = "00";
+                        document.getElementById("min").innerText = "00";
+                        document.getElementById("hour").innerText = "00";
+                    });
+                }
+            </script>
         </div>
     </article>
 </section>
+
 </body>
 </html>
