@@ -1,0 +1,161 @@
+body{
+    height: 460px;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF6BD;
+}
+.box{
+    color: black;
+    height: 50px;
+    text-align : center;
+}
+.timerBox{
+    width: 200px;
+    color: black;
+    outline: 2px solid black;
+}
+.timerBox .time{
+    font-size: 30pt;
+    color: #4C4C4C;
+    text-align: center;
+}
+.btnBox{
+    margin: 20px auto;
+    color : #86C8BC;
+    text-align: center;
+}
+.btnBox .fa{
+    margin: 0px 5px;
+    font-size: 30pt;
+    color: #86C8BC;
+    cursor: pointer;
+}
+#mapwrap{
+    position:relative;
+    overflow:hidden;
+}
+#weather, #weather *{
+    margin:0;
+    padding:0;
+    color:#000;
+}
+#weather {
+    position:absolute;
+    overflow:hidden;
+    top:10px;
+    right:10px;
+    z-index: 10;
+}
+#weather_open {
+    height : 50px;
+    width : 50px;
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:10px;
+    text-align:center;
+}
+
+#weather_info {
+    height : 50px;
+    width : 240px;
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:10px;
+    text-align:center;
+}
+
+#list {
+    position:absolute;
+    overflow:hidden;
+    top:65px;
+    right:10px;
+    z-index:10;
+}
+
+#list button {
+    height : 50px;
+    width : 50px;
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:10px;
+    text-align:center;
+}
+#recommend {
+    position:absolute;
+    overflow:hidden;
+    top:120px;
+    right:10px;
+    z-index: 10;
+}
+#recommend button {
+    height : 50px;
+    width : 50px;
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:10px;
+    text-align:center;
+}
+.category, .category *{
+    margin:0;
+    padding:0;
+    color:#000;
+}
+.category {
+    position:absolute;
+    overflow:hidden;
+    top:10px;
+    right:10px;
+    width:50px;
+    height:360px;
+    z-index:10;
+    border:1px solid black;
+    font-family:'Malgun Gothic','맑은 고딕',sans-serif;
+    font-size:12px;
+    text-align:center;
+    background-color:#fff;
+}
+
+img {
+    height : 25px;
+    width : 25px;
+    object-fit :cover;
+}
+
+.category .menu_selected {
+    background:#FF5F4A;
+    color:#fff;
+    border-left:1px solid #915B2F;
+    border-right:1px solid #915B2F;
+    margin:0 -1px;
+}
+.category li{
+    list-style:none;
+    float:left;
+    width:50px;
+    height:45px;
+    padding-top:5px;
+    cursor:pointer;
+}
+.category .ico_comm {
+    display:block;
+    margin:0 auto 2px;
+    width:22px;
+    height:26px;
+}
+.category .ico_trash {
+    background-position:-10px 0;
+}
+.category .ico_toilet {
+    background-position:-10px -36px;
+}
+.category .ico_dogcafe {
+    background-position:-10px -72px;
+}
+.category .ico_cafe {
+    background-position:-10px -108px;
+}
+.category .ico_res {
+    background-position:-10px -144px;
+}
+.category .ico_hos {
+    background-position:-10px -180px;
+}
+.category .ico_play {
+    background-position:-10px -216px;
+}

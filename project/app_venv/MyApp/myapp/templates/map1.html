@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+    <style>
+
+	</style>
     <meta charset="UTF-8">
-    <title>Map</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>map</title>
 </head>
 <body>
 <section>
@@ -29,7 +31,7 @@
                 <button type="button" id='weather_open'><img src="/static/image/sun.png"></button>
                 <button id='weather_info'>실시간 정보</button>
             </div>
-             <script>
+            <script>
                 $(document).ready(function() {
                     $('#weather_open').show(); //페이지를 로드할 때 표시할 요소
                     $('#weather_info').hide(); //페이지를 로드할 때 숨길 요소
@@ -48,6 +50,40 @@
             <div id="list">
                 <button type="button"><img src="/static/image/list.png"></button>
             </div>
+            <!--
+            <div class="category">
+                    <ul>
+                        <li id="trashMenu" onclick="changeMarker('trash')">
+                            <span class="ico_comm ico_trash"></span>
+                            쓰레기통
+                        </li>
+                        <li id="toiletMenu" onclick="changeMarker('toilet')">
+                            <span class="ico_comm ico_toilet"></span>
+                            화장실
+                        </li>
+                        <li id="dogcafeMenu" onclick="changeMarker('dogcafe')">
+                            <span class="ico_comm ico_dogcafe"></span>
+                            애견카페
+                        </li>
+                        <li id="cafeMenu" onclick="changeMarker('cafe')">
+                            <span class="ico_comm ico_cafe"></span>
+                            애견동반카페
+                        </li>
+                        <li id="resMenu" onclick="changeMarker('res')">
+                            <span class="ico_comm ico_res"></span>
+                            애견동반식당
+                        </li>
+                        <li id="hosMenu" onclick="changeMarker('hos')">
+                            <span class="ico_comm ico_hos"></span>
+                            동물병원
+                        </li>
+                        <li id="playMenu" onclick="changeMarker('play')">
+                            <span class="ico_comm ico_play"></span>
+                            운동장
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
             <div id="recommend">
                 <button type="button"><img src="/static/image/thumb-up.png"></button>
             </div>
@@ -259,18 +295,18 @@
                 <div id="paused">
                     <button type="button" id="start" aria-hidden="true">시작하기</button>
                 </div>
-            </div>
-            <script>
-                $(document).ready(function() {
-                    $('#paused').show(); //페이지를 로드할 때 표시할 요소
-                    $('#started').hide(); //페이지를 로드할 때 숨길 요소
-                        $('#start').click(function(){
-                            $ ('#paused').hide(); //클릭 시 첫 번째 요소 숨김
-                            $ ('#started').show(); //클릭 시 두 번째 요소 표시
-                        return false;
+                <script>
+                    $(document).ready(function() {
+                        $('#paused').show(); //페이지를 로드할 때 표시할 요소
+                        $('#started').hide(); //페이지를 로드할 때 숨길 요소
+                            $('#start').click(function(){
+                                $ ('#paused').hide(); //클릭 시 첫 번째 요소 숨김
+                                $ ('#started').show(); //클릭 시 두 번째 요소 표시
+                            return false;
+                        });
                     });
-                });
-            </script>
+                </script>
+            </div>
             <script>
                 window.onload = function(){
 
@@ -375,5 +411,6 @@
         </div>
     </article>
 </section>
+
 </body>
 </html>
