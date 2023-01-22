@@ -48,16 +48,14 @@
                 <button type="button" id="list_1"><img src="/static/image/list.png"></button>
             </div>
             <div id="category">
-                <ul>
-                    <li id="trashMenu" onclick="changeMarker('trash')">쓰레기통</li>
-                    <li id="toiletMenu" onclick="changeMarker('toilet')">화장실</li>
-                    <li id="vetMenu" onclick="changeMarker('vet')">동물병원</li>
-                    <li id="dogcafeMenu" onclick="changeMarker('dogcafe')">애견카페</li>
-                    <li id="cafeMenu" onclick="changeMarker('cafe')">애견동반카페</li>
-                    <li id="resMenu" onclick="changeMarker('res')">애견동반식당</li>
-                    <li id="playMenu" onclick="changeMarker('play')">무료 반려견 운동장</li>
-                    <button type="button" id="setting">완료</button>
-                </ul>
+                <div class="categories"><input type="checkbox" id="trashMenu" value="쓰레기통"/> 쓰레기통</div>
+                <div class="categories"><input type="checkbox" id="toiletMenu" value="화장실"/> 화장실</div>
+                <div class="categories"><input type="checkbox" id="vetMenu" value="동물병원"/> 동물병원</div>
+                <div class="categories"><input type="checkbox" id="dogcafeMenu" value="애견카페"/> 애견카페</div>
+                <div class="categories"><input type="checkbox" id="cafeMenu" value = "애견동반카페"/> 애견동반카페</div>
+                <div class="categories"><input type="checkbox" id="resMenu" value = "애견동반식당"/> 애견동반식당</div>
+                <div class="categories"><input type="checkbox" id="playMenu" value ="무료 반려견 운동장"/> 무료 반려견 운동장</div>
+                <div class="categories"><button type="button" id="setting">완료</button></div>
             </div>
             <script>
                 $(function() {
@@ -76,6 +74,68 @@
             <div id="recommend">
                 <button type="button"><img src="/static/image/thumb-up.png"></button>
             </div>
+            <form id="select">
+                <div>
+                    <div class="radio_top">종류</div>
+                    <div class="radio_list">
+                        <input type="radio" id="cafe1" name="type" value="애견카페" checked/> 애견카페
+                        <input type="radio" id="dogcafe1" name="type" value="애견동반카페"/> 애견동반카페
+                    </div>
+                </div>
+                <div id="dogcafe2">
+                    <div class="radio_top">오늘은 어떤 곳?</div>
+                    <div class="radio_list">
+                        <div><input type="radio" name="dogcafe" value="1" checked/> 애견카페1</div>
+                        <div><input type="radio" name="dogcafe" value="2"/> 애견카페2</div>
+                        <div><input type="radio" name="dogcafe" value="3"/> 애견카페3</div>
+                        <div><input type="radio" name="dogcafe" value="4"/> 애견카페4</div>
+                    </div>
+                </div>
+                <div id="cafe2">
+                    <div class="radio_top">오늘은 어떤 곳?</div>
+                    <div class="radio_list">
+                        <div><input type="radio" name="cafe" value="1" checked/> 카페1</div>
+                        <div><input type="radio" name="cafe" value="2"/> 카페2</div>
+                        <div><input type="radio" name="cafe" value="3"/> 카페3</div>
+                        <div><input type="radio" name="cafe" value="4"/> 카페1</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="radio_top"> 거리 </div>
+                    <div class="radio_list">
+                        <input type="radio" name="distance" value="500m" checked/> 500m
+                        <input type="radio" name="distance" value="1km"/> 1km
+                        <input type="radio" name="distance" value="1.5km"/> 1.5km
+                        <input type="radio" name="distance" value="2km"/> 2km
+                        <input type="radio" name="distance" value="3km"/> 3km
+                    </div>
+                </div>
+                <input id="submit" class="radio_list" type='submit'>
+            </form>
+            <script>
+                $(function() {
+                    $('#recommend').show(); //페이지를 로드할 때 표시할 요소
+                    $('#select').hide(); //페이지를 로드할 때 숨길 요소
+                    $('#select #cafe2').hide();
+                });
+                $('#recommend').click(function(){
+                    $('#recommend').hide(); //클릭 시 첫 번째 요소 숨김
+                    $('#select').show(); //클릭 시 두 번째 요소 표시
+                });
+                $('#submit').click(function(){
+                    $('#recommend').show();
+                    $('#select').hide();
+                });
+                $("input[name='type']").change(function(){
+                    if($("input[name='type']:checked").val() == '애견동반카페'){
+                        $('#select #dogcafe2').hide();
+                        $('#select #cafe2').show();
+                    }else if($("input[name='type']:checked").val() == '애견카페'){
+                        $('#select #dogcafe2').show();
+                        $('#select #cafe2').hide();
+                    }
+                });
+            </script>
         </div>
         <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6075751d111977dfe10aaa2dec967efd"></script>
         <script>
@@ -86,342 +146,6 @@
                 };
 
             var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-            var trashPositions = [
-                new kakao.maps.LatLng(37.499590490909185, 127.0263723554437),
-                new kakao.maps.LatLng(37.499427948430814, 127.02794423197847),
-                new kakao.maps.LatLng(37.498553760499505, 127.02882598822454),
-            ];
-
-            var toiletPositions = [
-                new kakao.maps.LatLng(37.497535461505684, 127.02948149502778),
-                new kakao.maps.LatLng(37.49671536281186, 127.03020491448352),
-                new kakao.maps.LatLng(37.496201943633714, 127.02959405469642),
-            ];
-
-            var vatPositions = [
-                new kakao.maps.LatLng(37.49640072567703, 127.02726459882308),
-                new kakao.maps.LatLng(37.49640098874988, 127.02609983175294),
-                new kakao.maps.LatLng(37.49932849491523, 127.02935780247945)
-            ];
-
-            var dogcafePositions = [
-                new kakao.maps.LatLng(37.49966168796031, 127.03007039430118),
-                new kakao.maps.LatLng(37.499463762912974, 127.0288828824399),
-                new kakao.maps.LatLng(37.49896834100913, 127.02833986892401),
-            ];
-
-            var cafePositions = [
-                new kakao.maps.LatLng(37.49893267508434, 127.02673400572665),
-                new kakao.maps.LatLng(37.49872543597439, 127.02676785815386),
-                new kakao.maps.LatLng(37.497680616783086, 127.02518427952202)
-            ];
-
-            var resPositions = [
-                new kakao.maps.LatLng(37.497625593121384, 127.02935713582038),
-                new kakao.maps.LatLng(37.49646391248451, 127.02675574250912),
-                new kakao.maps.LatLng(37.49754540521486, 127.02546694890695)
-            ];
-
-            var playPosition = [
-                new kakao.maps.LatLng(37.49813096097184, 127.02591949495914),
-                new kakao.maps.LatLng(37.49629291770947, 127.02587362608637),
-                new kakao.maps.LatLng(37.49996818951873, 127.02943721562295)
-            ];
-
-            var trashMarkers = [],
-                toiletMarkers = [],
-                vetMarkers = [],
-                dogcafeMarkers = [],
-                cafeMarkers = [],
-                resMarkers = [],
-                playMarkers = [];
-
-            createTrashMarkers();
-            createToiletMarkers();
-            createVetMarkers();
-            createDogcafeMarkers();
-            createCafeMarkers();
-            createResMarkers();
-            createPlayMarkers();
-
-            changeMarker('trash');
-
-            function createMarkerImage(src, size, options) {
-                var markerImage = new kakao.maps.MarkerImage(src, size, options);
-                return markerImage;
-            }
-
-            function createMarker(position, image) {
-                var marker = new kakao.maps.Marker({
-                    position: position,
-                    image: image
-                });
-                return marker;
-            }
-
-            function createTrashMarkers() {
-                for (var i = 0; i < trashPositions.length; i++) {
-                    var imageSize = new kakao.maps.Size(22, 26),
-                        imageOptions = {
-                            spriteOrigin: new kakao.maps.Point(10, 0),
-                            spriteSize: new kakao.maps.Size(36, 98)
-                        };
-                    var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
-                        marker = createMarker(trashPositions[i], markerImage);
-                    trashMarkers.push(marker);
-                }
-            }
-            function setTrashMarkers(map) {
-                for (var i = 0; i < trashMarkers.length; i++) {
-                    trashMarkers[i].setMap(map);
-                }
-            }
-
-            function createToiletMarkers() {
-                for (var i = 0; i < toiletPositions.length; i++) {
-                    var imageSize = new kakao.maps.Size(22, 26),
-                        imageOptions = {
-                            spriteOrigin: new kakao.maps.Point(10, 36),
-                            spriteSize: new kakao.maps.Size(36, 98)
-                        };
-                    var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
-                        marker = createMarker(toiletPositions[i], markerImage);
-                    toiletMarkers.push(marker);
-                }
-            }
-            function setToiletMarkers(map) {
-                for (var i = 0; i < toiletMarkers.length; i++) {
-                    toiletMarkers[i].setMap(map);
-                }
-            }
-
-            function createVetMarkers() {
-                for (var i = 0; i < vetPositions.length; i++) {
-                    var imageSize = new kakao.maps.Size(22, 26),
-                        imageOptions = {
-                            spriteOrigin: new kakao.maps.Point(10, 36),
-                            spriteSize: new kakao.maps.Size(36, 98)
-                        };
-                    var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
-                        marker = createMarker(vetPositions[i], markerImage);
-                    vetMarkers.push(marker);
-                }
-            }
-            function setVetMarkers(map) {
-                for (var i = 0; i < vetMarkers.length; i++) {
-                    vetMarkers[i].setMap(map);
-                }
-            }
-
-            function createDogcafeMarkers() {
-                for (var i = 0; i < dogcafePositions.length; i++) {
-                    var imageSize = new kakao.maps.Size(22, 26),
-                        imageOptions = {
-                            spriteOrigin: new kakao.maps.Point(10, 72),
-                            spriteSize: new kakao.maps.Size(36, 98)
-                        };
-                    var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
-                        marker = createMarker(dogcafePositions[i], markerImage);
-                    dogcafeMarkers.push(marker);
-                }
-            }
-            function setDogcafeMarkers(map) {
-                for (var i = 0; i < dogcafeMarkers.length; i++) {
-                    dogcafeMarkers[i].setMap(map);
-                }
-            }
-
-            function createCafeMarkers() {
-                for (var i = 0; i < cafePositions.length; i++) {
-                    var imageSize = new kakao.maps.Size(22, 26),
-                        imageOptions = {
-                            spriteOrigin: new kakao.maps.Point(10, 72),
-                            spriteSize: new kakao.maps.Size(36, 98)
-                        };
-                    var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
-                        marker = createMarker(cafePositions[i], markerImage);
-                    cafeMarkers.push(marker);
-                }
-            }
-            function setCafeMarkers(map) {
-                for (var i = 0; i < cafeMarkers.length; i++) {
-                    cafeMarkers[i].setMap(map);
-                }
-            }
-
-            function createResMarkers() {
-                for (var i = 0; i < resPositions.length; i++) {
-                    var imageSize = new kakao.maps.Size(22, 26),
-                        imageOptions = {
-                            spriteOrigin: new kakao.maps.Point(10, 72),
-                            spriteSize: new kakao.maps.Size(36, 98)
-                        };
-                    var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
-                        marker = createMarker(resPositions[i], markerImage);
-                    resMarkers.push(marker);
-                }
-            }
-            function setResMarkers(map) {
-                for (var i = 0; i < resMarkers.length; i++) {
-                    resMarkers[i].setMap(map);
-                }
-            }
-
-            function createPlayMarkers() {
-                for (var i = 0; i < playPositions.length; i++) {
-                    var imageSize = new kakao.maps.Size(22, 26),
-                        imageOptions = {
-                            spriteOrigin: new kakao.maps.Point(10, 72),
-                            spriteSize: new kakao.maps.Size(36, 98)
-                        };
-                    var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),
-                        marker = createMarker(PlayPositions[i], markerImage);
-                    playMarkers.push(marker);
-                }
-            }
-            function setPlayMarkers(map) {
-                for (var i = 0; i < playMarkers.length; i++) {
-                    playMarkers[i].setMap(map);
-                }
-            }
-
-            function changeMarker(type){
-
-                var trashMenu = document.getElementById('trashMenu');
-                var toiletMenu = document.getElementById('toiletMenu');
-                var vetMenu = document.getElementById('vetMenu');
-                var dogcafeMenu = document.getElementById('dogcafeMenu');
-                var cafeMenu = document.getElementById('cafeMenu');
-                var resMenu = document.getElementById('resMenu');
-                var playMenu = document.getElementById('playMenu');
-
-                if (type === 'trash') {
-                    trashMenu.className = 'menu_selected';
-                    toiletMenu.className = '';
-                    vetMenu.className = '';
-                    dogcafeMenu.className = '';
-                    cafeMenu.className = '';
-                    resMenu.className = '';
-                    playMenu.className = '';
-
-                    setTrashMarkers(map);
-                    setToiletMarkers(null);
-                    setVetMarkers(null);
-                    setDogcafeMarkers(null);
-                    setCafeMarkers(null);
-                    setResMarkers(null);
-                    setPlayMarkers(null);
-
-                } else if (type === 'toilet') {
-
-                    trashMenu.className = '';
-                    toiletMenu.className = 'menu_selected';
-                    vetMenu.className = '';
-                    dogcafeMenu.className = '';
-                    cafeMenu.className = '';
-                    resMenu.className = '';
-                    playMenu.className = '';
-
-                    setTrashMarkers(null);
-                    setToiletMarkers(map);
-                    setVetMarkers(null);
-                    setDogcafeMarkers(null);
-                    setCafeMarkers(null);
-                    setResMarkers(null);
-                    setPlayMarkers(null);
-
-                } else if (type === 'vet') {
-
-                    trashMenu.className = '';
-                    toiletMenu.className = '';
-                    vetMenu.className = 'menu_selected';
-                    dogcafeMenu.className = '';
-                    cafeMenu.className = '';
-                    resMenu.className = '';
-                    playMenu.className = '';
-
-                    setTrashMarkers(null);
-                    setToiletMarkers(null);
-                    setVetMarkers(map);
-                    setDogcafeMarkers(null);
-                    setCafeMarkers(null);
-                    setResMarkers(null);
-                    setPlayMarkers(null);
-
-                } else if (type === 'dogcafe') {
-
-                    trashMenu.className = '';
-                    toiletMenu.className = '';
-                    vetMenu.className ='';
-                    dogcafeMenu.className = 'menu_selected';
-                    cafeMenu.className = '';
-                    resMenu.className = '';
-                    playMenu.className = '';
-
-                    setTrashMarkers(null);
-                    setToiletMarkers(null);
-                    setVetMarkers(null);
-                    setDogcafeMarkers(map);
-                    setCafeMarkers(null);
-                    setResMarkers(null);
-                    setPlayMarkers(null);
-
-                }   else if (type === 'cafe') {
-
-                    trashMenu.className = '';
-                    toiletMenu.className = '';
-                    vetMenu.className ='';
-                    dogcafeMenu.className = '';
-                    cafeMenu.className = 'menu_selected';
-                    resMenu.className = '';
-                    playMenu.className = '';
-
-                    setTrashMarkers(null);
-                    setToiletMarkers(null);
-                    setVetMarkers(null);
-                    setDogcafeMarkers(null);
-                    setCafeMarkers(map);
-                    setResMarkers(null);
-                    setPlayMarkers(null);
-
-                }   else if (type === 'res') {
-
-                    trashMenu.className = '';
-                    toiletMenu.className = '';
-                    vetMenu.className ='';
-                    dogcafeMenu.className = '';
-                    cafeMenu.className = '';
-                    resMenu.className = 'menu_selected';
-                    playMenu.className = '';
-
-                    setTrashMarkers(null);
-                    setToiletMarkers(null);
-                    setVetMarkers(null);
-                    setDogcafeMarkers(null);
-                    setCafeMarkers(null);
-                    setResMarkers(map);
-                    setPlayMarkers(null);
-
-                }   else if (type === 'play') {
-
-                    trashMenu.className = '';
-                    toiletMenu.className = '';
-                    vetMenu.className ='';
-                    dogcafeMenu.className = '';
-                    cafeMenu.className = '';
-                    resMenu.className = '';
-                    playMenu.className = 'menu_selected';
-
-                    setTrashMarkers(null);
-                    setToiletMarkers(null);
-                    setVetMarkers(null);
-                    setDogcafeMarkers(null);
-                    setCafeMarkers(null);
-                    setResMarkers(null);
-                    setPlayMarkers(map);
-                }
-            }
         </script>
     </article>
     <article>
