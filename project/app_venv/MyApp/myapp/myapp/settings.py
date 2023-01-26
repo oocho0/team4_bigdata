@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "firstapp.apps.FirstappConfig",
     "secondapp.apps.SecondappConfig",
     "thirdapp.apps.ThirdappConfig",
+    "fourthapp.apps.FourthappConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
