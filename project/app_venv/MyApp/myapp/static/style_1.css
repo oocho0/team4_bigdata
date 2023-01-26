@@ -1,20 +1,34 @@
 @import url(https://fonts.googleapis.com/css?family=Julius+Sans+One);
+@font-face {
+    font-family: 'Humanbumsuk';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Humanbumsuk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SDSamliphopangche_Outline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Outline.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'SDSamliphopangche_Outline';
   }
   
-  body{
+body{
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    font-family: 'Oswald', sans-serif;
     background: #FFF6BD;
-  }
+    font-family: 'SDSamliphopangche_Outline';
+}
   
-  .menu-bar {
+.menu-bar {
     position: absolute;
     right: 0;
     width: 60px;
@@ -30,16 +44,18 @@
     justify-content: center;
     z-index: 2;
     box-shadow: 0 8px 15px rgba(0, 0, 0, .5);
-  }
-  .menu-bar .line{
+    font-family: 'SDSamliphopangche_Outline';
+}
+.menu-bar .line{
     width: 25px;
     height: 2px;
     margin: 3px;
     background: #ebebeb;
     transition: all 300ms ease-out;
-  }
-  
-  .nav-bar .nav-items{
+    font-family: 'SDSamliphopangche_Outline';
+}
+
+.nav-bar .nav-items{
     position: fixed;
     top: 0;
     right: 0;
@@ -54,50 +70,67 @@
     transition: all 800ms ease-out;
     opacity: 0;
     z-index: 1;
-  }
-  
-  .nav-bar .nav-items .nav-links{
+    font-family: 'SDSamliphopangche_Outline';
+}
+
+.nav-bar .nav-items .nav-links{
     color: #ebebeb;
     font-size: 22px;
     margin: 10px 17px;
+    font-family: 'SDSamliphopangche_Outline';
     text-decoration: none;
-  }
+}
 
-  .nav-bar .nav-items .nav-mini{
+.nav-bar .nav-items .nav-mini{
     color: #ebebeb;
-    font-size: 15px;
+    font-size: 11px;
     font-weight: 100;
     margin: 3px 17px;
+    font-family: 'SDSamliphopangche_Outline';
     text-decoration: none;
-  }
-  
-  .nav-bar.toggle .nav-items{
+}
+
+.nav-bar.toggle .nav-items{
     clip-path: circle(100%);
     opacity: 1;
-  }
-  
-  .nav-bar.toggle .menu-bar{
+    font-family: 'SDSamliphopangche_Outline';
+}
+
+.nav-bar.toggle .menu-bar{
     box-shadow: none;
-  }
-  
-  .nav-bar.toggle .menu-bar .line:nth-child(1){
+    font-family: 'SDSamliphopangche_Outline';
+}
+
+.nav-bar.toggle .menu-bar .line:nth-child(1){
     transform: rotate(-45deg);
     margin: 0;
-  }
-  .nav-bar.toggle .menu-bar .line:nth-child(3){
+}
+.nav-bar.toggle .menu-bar .line:nth-child(3){
     opacity: 0;
-  }
-  .nav-bar.toggle .menu-bar .line:nth-child(2){
+}
+.nav-bar.toggle .menu-bar .line:nth-child(2){
     transform: rotateZ(45deg);
     margin: -2px;
-  }
-  .title {
-    height: 100%;
-    transform: translate(0%, 45%);
-  }
-  .title h1{
-    text-align: center;
-    font-size: 3em;
-    color: transparent;
-    -webkit-text-stroke: 1.5px #6f4a8e;
-  }
+}
+
+#home{
+    display:flex;
+    justify-content:center;
+    text-align:center;
+}
+
+.drop {
+  width: 80%;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  border: solid 5px #FFD4B2;
+  float: center;
+}
+
+.head{
+  width:20%;
+  text-align: center;
+  font-family: 'SDSamliphopangche_Outline';
+  font-size: 60px;
+}
