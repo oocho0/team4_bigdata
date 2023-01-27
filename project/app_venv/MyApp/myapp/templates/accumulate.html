@@ -28,12 +28,6 @@
             display: flex;
         }
 
-        .content {
-            float: right;
-            margin-right: 200px;
-            margin-top:c20px;
-            clear:both;
-        }
     </style>
     <meta charset="UTF-8">
 
@@ -44,16 +38,20 @@
             <div  class="img">
                 <input type="checkbox" name="dalgom1" value="dalgom1">
                 <img id="dalgom1" height="100px" width="100px" src="/static/image/dalgom.jpeg" draggable="true" ondragstart="drag(event)" style="margin:3px; float:center; border-radius: 50%;"
-                    <p class="content"> 달곰1 </p>
+                <p text-align="right"> 달곰1 </p>
             </div>
             <div class="img">
                 <input type="checkbox" name="dalgom2" value="dalgom2">
                 <img id="dalgom2" height="100px" width="100px" src="/static/image/dalgom.jpeg" draggable="true" ondragstart="drag(event)" style="margin:3px; float:center; border-radius: 50%;">
+                <p text-align="right"> 달곰2 </p>
             </div>
             <div class="img">
                 <input type="checkbox" name="3" value="dalgom3">
                 <img id="dalgom3" height="100px" width="100px" src="/static/image/dalgom.jpeg" draggable="true" ondragstart="drag(event)" style="margin:3px; float:center; border-radius: 50%;">
+                <p text-align="right"> 달곰3 </p>
             </div>
+
+            <input type="submit" style="background-color:#FFD4B2; border-color:black; width:170px; padding:13px; font-size:13pt" value="보러가기">
         </article>
 </body>
 </html>
